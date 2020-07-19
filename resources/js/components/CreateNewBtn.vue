@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button @click="redirectPage" class="btn btn-primary" v-if="is_admin">Create WTB</button>
+        <button class="btn btn-primary" v-if="is_admin">Create WTB</button>
     </div>
 </template>
 
@@ -23,9 +23,10 @@
 
             },
 
-            redirectPage(){
-                window.location.href = 'http://127.0.0.1:8000/admin/createNewList';
-            }
+            // redirectPage(){
+            //
+            //     window.location.href = 'http://rfq.ipsupply.net/admin/createNewList';
+            // }
         },
 
         mounted() {

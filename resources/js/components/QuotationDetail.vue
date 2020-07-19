@@ -16,22 +16,22 @@
                 <td></td>
                 <td>
                     <label>
-                        <input class="form-control" v-model="quoDetail.qty" v-on:keypress="emitToModelDetail"  type="text" value="" style="width:50px;">
+                        <input class="form-control" maxlength="5" v-model="quoDetail.qty" v-on:keypress="emitToModelDetail"  type="text" value="" style="width:50px;" required>
                     </label>
                 </td>
                 <td>
                     <label>
-                        <select class="form-control" v-model="quoDetail.condition" style="width: 100px">
-                            <option value="gradeA">Grade A</option>
-                            <option value="new">New</option>
-                            <option value="nib">NIB</option>
-                            <option value="nob">NOB</option>
+                        <select class="form-control" v-model="quoDetail.condition" style="width: 100px" required>
+                            <option value="GradeA">Grade A</option>
+                            <option value="New">New</option>
+                            <option value="NIB">NIB</option>
+                            <option value="NOB">NOB</option>
                         </select>
                     </label>
                 </td>
                 <td>
                     <label>
-                        <input type="text" v-model="quoDetail.unitPrice" style="width:70px;" placeholder="$" class="form-control">
+                        <input type="text" maxlength="10" v-model="quoDetail.unitPrice" style="width:70px;" placeholder="$" class="form-control" required>
                     </label>
                 </td>
                 <td>
@@ -52,7 +52,7 @@
             </tbody>
         </table>
         <div>
-            <button class="btn" @click="addNewLine"><p style="display: inline"> Add other conditions and/or price breaks</p></button>
+            <button class="btn" @click="addNewLine" style="float: left"><p style="display: inline;"> + Add other conditions and/or price breaks</p></button>
 
         </div>
     </div>
@@ -97,6 +97,18 @@
                 {
                     this.quoDetails.splice(index, 1)
                 }
+                else{
+                    this.quoDetails.splice(index, 1)
+                    this.quoDetails.push({
+                        modelId: this.modelId,
+                        modelName: this.modelName,
+                        qty: '',
+                        condition: '',
+                        unitPrice: '',
+                        note: ''
+                    })
+
+                }
 
             },
 
@@ -106,9 +118,6 @@
 
         },
 
-        mounted() {
-            console.log(this.modelId)
-        }
     }
 </script>
 

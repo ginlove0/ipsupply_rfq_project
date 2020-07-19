@@ -25,5 +25,7 @@ Route::get('ipsupply/addModelDetail/{detail}/{group}', 'ModelDetailController@ad
 
 Route::get('ipsupply/getModelDetail/{userId}', 'ModelDetailController@getModelDetail');
 
-Route::get('ipsupply/addQuotationToDb/{quotationList}/{userId}', 'QuotationController@addQuotationToDb')
-    ->where('quotationList', '(.*)');;
+Route::get('ipsupply/addQuotationToDb/{quotationList}/{userId}/{freeShipping}', 'QuotationController@addQuotationToDb')
+    ->where('quotationList', '(.*)');
+
+Route::get('ipsupply/deleteModelFromDB/{modelId}', 'ModelDetailController@deleteModel');

@@ -4,13 +4,16 @@
 
 <div class="container">
     <div class="row justify-content-end">
-        <create-new-btn :user-id="{{ \Illuminate\Support\Facades\Auth::user() }}"></create-new-btn>
+        <a href="{{url('/admin/createNewList')}}">
+            <create-new-btn :user-id="{{ \Illuminate\Support\Facades\Auth::user() }}"></create-new-btn>
+        </a>
+
     </div>
     <div class="row justify-content-center">
         <div class="col-md-8">
 
-            <div class="card">
-                <div class="card-header">{{ __('Vender Portal') }}</div>
+            <div class="card" style="width: 1000px; margin-left: -130px; margin-top: 10px;">
+                <div class="card-header" style="font-size: 25px">{{ __('Vender Portal') }}</div>
 
 
                 <div class="card-body">

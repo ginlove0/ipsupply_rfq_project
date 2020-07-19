@@ -5,7 +5,7 @@
                 <label for="model-textarea" style="font-size: 30px">Model List:</label>
                 <textarea v-model="modelList"  class="form-control" id="model-textarea" rows="8"></textarea>
             </div>
-            <button @click="handleNext" type="button" style="margin-top: 10px;" class="btn btn-primary mb-2">Next</button>
+            <button @click="handleNext" type="button" style="margin-top: 10px; width: 100%" class="btn btn-primary mb-2">Next</button>
 
         </div>
         <div class="container" v-show="isRequestList">
@@ -33,8 +33,8 @@
                 listModel: [{
                     id: '',
                     name: '',
-                    condition: 'any',
-                    qty: 'any',
+                    condition: 'Any',
+                    qty: 'Any',
                     serialRequired: 'noneed',
                     note: ''
                 }],

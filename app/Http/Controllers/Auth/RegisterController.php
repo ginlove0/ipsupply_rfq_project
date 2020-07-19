@@ -73,9 +73,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'status' => false,
-            'is_groupa' => false,
-            'is_groupb' => false,
-            'is_groupc' => false,
+            'meta' => ["group" => ["group-us","group-cn","group-au"]],
             'is_admin' => false,
         ]);
     }

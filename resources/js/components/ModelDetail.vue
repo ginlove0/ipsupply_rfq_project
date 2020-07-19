@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <button @click="handleBack" type="button" class="btn btn-primary mb-2">Back</button>
+        <button @click="handleBack" type="button" class="btn btn-primary mb-2 handleBackBtn">Back</button>
         <h1> Model Details: </h1>
 
         <div style="float: right; font-size: 20px">
@@ -30,25 +30,28 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="model in listModel" :key="model.id">
+                <tr v-for="(model, index) in listModel" :id="model.id" :key="index">
                     <td>{{model.name}}</td>
                     <td>
                         <label>
                             <select v-model="model.condition" class="form-control">
-                                <option value="any" selected>Any</option>
-                                <option value="gradeA">Grade A</option>
-                                <option value="new">New</option>
-                                <option value="nib">NIB</option>
-                                <option value="nob">NOB</option>
+                                <option value="Any" selected>Any</option>
+                                <option value="GradeA">Grade A</option>
+                                <option value="New">New</option>
+                                <option value="NIB">NIB</option>
+                                <option value="NOB">NOB</option>
                             </select>
                         </label>
                     </td>
                     <td>
                         <label>
-                            <select v-model="model.qty" class="form-control">
-                                <option value="any" selected>Any</option>
-                                <option value="digit">Digit</option>
+                            <select @change="onChangeQtySelection($event.target.value, model.id)" :class="{ opened: opened.includes(model.id) }" v-model="model.qty" class="form-control">
+                                <option value="Any" selected>Any</option>
+                                <option value="0">Digit</option>
                             </select>
+                        </label>
+                        <label v-if="opened.includes(model.id)">
+                            <input class="form-control editOption" v-model="model.qty" placeholder="input digit"/>
                         </label>
                     </td>
                     <td>
@@ -72,10 +75,11 @@
                     </td>
                 </tr>
             </tbody>
+
         </table>
 
         <div>
-            <button class="btn btn-primary" type="button" @click="handleSubmit">Button</button>
+            <button class="btn btn-primary" type="button" @click="handleSubmit" style="float: right; width: 100%">Submit</button>
         </div>
     </div>
 </template>
@@ -90,7 +94,10 @@
         data() {
             return{
                 group: ["group-au", "group-us", "group-cn"],
-                arrayModel: []
+                arrayModel: [],
+                anySelected: true,
+                digitSelected: false,
+                opened: []
             }
         },
 
@@ -108,13 +115,37 @@
 
                 axios.get('/api/ipsupply/addModelDetail/'+ JSON.stringify(this.arrayModel)+'/'+JSON.stringify(this.group))
                     .then((res) => {
-                        console.log(res)
-                        window.location.href = 'http://127.0.0.1:8000/Vender';
+                        window.location.href = 'https://rfq.ipsupply.net/Vender';
                     })
                     .catch((err) => {
                         console.log(err)
                     });
-            }
+            },
+
+            onChangeQtySelection(value, id) {
+                if(value === '0'){
+                    const index = this.opened.indexOf(id);
+
+                    if (index > -1) {
+                        this.opened.splice(index, 1)
+                    } else {
+                        this.opened.push(id)
+                    }
+
+                }else{
+                    const index = this.opened.indexOf(id);
+                    this.opened.splice(index, 1)
+                }
+            },
+
+            // onClickSelect(id){
+            //     const index = this.opened.indexOf(id);
+            //     if (index > -1) {
+            //         this.opened.splice(index, 1)
+            //     } else {
+            //         this.opened.push(id)
+            //     }
+            // }
 
 
         },
@@ -130,5 +161,9 @@
 
     .table td {
         text-align: center;
+    }
+
+    .handleBackBtn{
+        width: 100px;
     }
 </style>

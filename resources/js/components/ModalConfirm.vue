@@ -10,30 +10,43 @@
                         <div class="modal-body">
                             <table class="table">
                                 <thead>
-                                <tr>
-                                    <td>Qty</td>
-                                    <td>Model</td>
-                                    <td>Condition</td>
-                                    <td>Unit Price</td>
-                                    <td>Notes</td>
-                                </tr>
+                                    <tr>
+                                        <td>Qty</td>
+                                        <td>Model</td>
+                                        <td>Condition</td>
+                                        <td>Unit Price</td>
+                                        <td>Notes</td>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                <template v-for="details in listQuotation">
-                                    <tr v-for="detail in details">
-                                        <td>{{detail.qty}}</td>
-                                        <td>{{detail.modelName}}</td>
-                                        <td>{{detail.condition}}</td>
-                                        <td>{{detail.unitPrice}}</td>
-                                        <td>{{detail.note}}</td>
-                                    </tr>
-                                </template>
+                                    <template v-for="details in listQuotation">
+                                        <tr v-for="detail in details">
+                                            <td>{{detail.qty}}</td>
+                                            <td>{{detail.modelName}}</td>
+                                            <td>{{detail.condition}}</td>
+                                            <td>{{detail.unitPrice}}</td>
+                                            <td>{{detail.note}}</td>
+                                        </tr>
+                                    </template>
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="5">
+                                            <span style="font-weight: bold; color: red" v-if="freeShipping === '0'">DOES NOT include free ground shipping</span>
+                                            <span style="font-weight: bold; color: red" v-if="freeShipping === '1'">Free ground shipping included</span>
+                                        </td>
+                                    </tr>
+
+                                </tfoot>
 
                             </table>
-                            <button v-if="listQuotation.length > 0" type="button" class="btn-primary btn" @click="onSubmit"> Submit</button>
-                            <button type="button" class="btn btn-secondary" @click="onClose">Close</button>
+                            <div style="float:right;">
+                                <button v-if="listQuotation.length > 0" type="button" class="btn-primary btn" @click="onSubmit"> Submit</button>
+                                <button type="button" class="btn btn-secondary" @click="onClose">Close</button>
+                            </div>
                         </div>
+
+
                     </div>
                 </div>
             </div>
@@ -45,7 +58,7 @@
     export default {
         name: "ModalConfirm",
 
-        props: ['listQuotation', 'userId'],
+        props: ['listQuotation', 'userId', 'freeShipping'],
 
         methods: {
             onClose() {
@@ -53,10 +66,10 @@
             },
 
             onSubmit() {
-                axios.get('/api/ipsupply/addQuotationToDb/' + JSON.stringify(this.listQuotation) + '/' + JSON.stringify(this.userId))
+
+                axios.get('/api/ipsupply/addQuotationToDb/' + JSON.stringify(this.listQuotation) + '/' + JSON.stringify(this.userId) + '/' +this.freeShipping)
                 .then((res) => {
-                    console.log(res)
-                    window.location.href = 'http://127.0.0.1:8000/Vender'
+                    window.location.href = 'https://rfq.ipsupply.net/Vender'
                     alert('Thanks for your responses. Our team will contact you ASAP.')
                 })
                 .catch((err) => {

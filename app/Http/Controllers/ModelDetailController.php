@@ -37,24 +37,40 @@ class ModelDetailController extends Controller
 
     public function getModelDetail($userId)
     {
+        $arrayObject = new \ArrayObject();
         $user = User::where('id', $userId)->first();
-//        Log::info($user->meta['group']);
 
         $groups = $user->meta['group'];
 
+        //foreach group belong to user
         foreach ($groups as $group)
         {
+            //if model contain any group belong to user
             $models = ModelDetail::whereRaw('JSON_CONTAINS(meta, \'["' . $group . '"]\')')->get();
+            foreach ($models as $model)
+            {
+                //push all model found to an object
+                $arrayObject->append($model);
+
+            }
 
         }
 
+        //if user is not an admin, return object contain model can see
+        //else return all because user is admin
         if($user->is_admin === 0)
         {
-            return $models;
+            return array_unique((array)$arrayObject);
 
         }else{
             return ModelDetail::all();
         }
 
+    }
+
+    public function deleteModel($modelId) {
+        ModelDetail::where('id', $modelId)->delete();
+
+        return view('home');
     }
 }

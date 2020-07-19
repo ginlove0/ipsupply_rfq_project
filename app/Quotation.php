@@ -11,7 +11,7 @@ class Quotation extends Model
 
     protected $table = 'quotation';
 
-    protected $fillable = ['userId', 'modelId', 'qty', 'condition', 'price', 'note'];
+    protected $fillable = ['userId', 'modelId', 'qty', 'condition', 'price', 'note', 'free_shipping'];
 
     public function users():BelongsTo
     {

@@ -9,10 +9,12 @@ use Illuminate\Support\Facades\Log;
 class QuotationController extends Controller
 {
     //
-    public function addQuotationToDb($quotationList, $userId)
+    public function addQuotationToDb($quotationList, $userId, $freeShipping)
     {
         $objQuotation = json_decode($quotationList);
         $objUser = json_decode($userId);
+
+        Log::info($quotationList);
 
         foreach ($objQuotation as $details){
             foreach ($details as $detail){
@@ -22,7 +24,8 @@ class QuotationController extends Controller
                     'qty' => $detail->qty,
                     'condition' => $detail->condition,
                     'note' => $detail->note,
-                    'price' => $detail->unitPrice
+                    'price' => $detail->unitPrice,
+                    'free_shipping' => $freeShipping
                 ]);
             }
         }
