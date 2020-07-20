@@ -2113,7 +2113,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
       axios.get('/api/ipsupply/getModelDetail/' + this.userId.id).then(function (res) {
         for (var i = 0; i < res.data.length; i++) {
-          res.data[i].created_at = res.data[i].created_at.split('T')[0];
+          res.data[i].created_at = res.data[i].created_at.split(' ')[0];
         }
 
         _this.displayList = res.data;
@@ -2150,17 +2150,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
         console.log('Well done!');
         this.openModalConfirm = true;
-      } // if(this.countErr > 0){
-      //     alert('Please specify a quantity, price and condition for '+ this.fromQuoDetails[0][i].modelName  +'. ' +
-      //         'Take note that for any line item on this form if you enter a price, ' +
-      //         'quantity, or notes you will be required to fill out the price, condition and quantity ' +
-      //         'for that item before your response will be accepted.')
-      //     this.countErr = 0;
-      // }else{
-      //     this.openModalConfirm = true;
-      // }
-      // this.openModalConfirm = true;
-
+      }
     },
     removeModelFromDB: function removeModelFromDB(modelId) {
       axios.get('/api/ipsupply/deleteModelFromDB/' + modelId).then(function (res) {
@@ -2185,7 +2175,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     },
     getNow: function getNow() {
       var today = Date();
+      console.log('today', today);
       this.timestamp = moment__WEBPACK_IMPORTED_MODULE_3___default()(today).format('YYYY-MM-DD');
+      console.log('today', this.timestamp);
     }
   },
   computed: {
