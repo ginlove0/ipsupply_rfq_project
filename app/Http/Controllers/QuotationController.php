@@ -25,7 +25,8 @@ class QuotationController extends Controller
                     'condition' => $detail->condition,
                     'note' => $detail->note,
                     'price' => $detail->unitPrice,
-                    'free_shipping' => $freeShipping
+                    'free_shipping' => $freeShipping,
+                    'serialNumber' => $detail->serialNumber
                 ]);
             }
         }

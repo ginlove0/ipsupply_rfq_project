@@ -21,6 +21,16 @@
   <component name="ChangeListManager">
     <list default="true" id="10f5499b-766f-400e-8514-ee752a098fe0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ModelDetailController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ModelDetailController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/QuotationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/QuotationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Observers/UserObserver.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Observers/UserObserver.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Quotation.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Quotation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/DisplayModelList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/DisplayModelList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/ModalConfirm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/ModalConfirm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/ModelDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/ModelDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/QuotationDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/QuotationDetail.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +198,7 @@
       <updated>1593993885351</updated>
       <workItem from="1593993900307" duration="239000" />
       <workItem from="1593994813536" duration="106357000" />
-      <workItem from="1595201377667" duration="4202000" />
+      <workItem from="1595201377667" duration="19524000" />
     </task>
     <servers />
   </component>

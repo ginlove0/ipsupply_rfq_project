@@ -1,8 +1,7 @@
 <template>
     <div>
 <!--        <form v-on:submit.prevent="onSubmit(data)">-->
-            <table class="table" style="text-align: center
-            ;">
+            <table class="table" style="text-align: center;">
                 <thead>
                 <tr>
                     <td></td>
@@ -12,7 +11,7 @@
                     <td class="header-table">Serial Number</td>
                     <td class="header-table">Note</td>
                     <td class="header-table">Age</td>
-                    <td v-if="is_admin"></td>
+                    <td></td>
                 </tr>
                 </thead>
                 <tbody>
@@ -31,7 +30,7 @@
 
                         <td class="body-table">{{detail.note}}</td>
 
-                        <td v-if="timestamp === detail.created_at" class="rainbow-text">New!</td>
+                        <td v-if="timestamp === detail.created_at.split(' ')[0]" class="rainbow-text">New!</td>
                         <td v-else> </td>
 
                         <td v-if="is_admin">
@@ -43,7 +42,7 @@
                         </td>
                     </tr>
                     <tr v-if="opened.includes(detail.id)" id="hello">
-                        <td colspan="7">
+                        <td colspan="8">
                             <QuotationDetail v-on:getQuotationEachModel="onGetDetail" :model-id="detail.id" :model-name="detail.name" :display-list="displayList"></QuotationDetail>
                         </td>
                     </tr>
@@ -112,11 +111,9 @@
             getModelFromDBByUserGroup () {
                 axios.get('/api/ipsupply/getModelDetail/'+this.userId.id)
                 .then((res) => {
-                    for(let i = 0; i < res.data.length; i++)
-                    {
-                        res.data[i].created_at = res.data[i].created_at.split(' ')[0]
-                    }
+
                     this.displayList = res.data
+
                 })
                 .catch((err) => {
                     console.log(err)
@@ -198,9 +195,7 @@
 
             getNow() {
                 const today = Date();
-                console.log('today',today);
                 this.timestamp = moment(today).format('YYYY-MM-DD');
-                console.log('today',this.timestamp);
             }
 
 

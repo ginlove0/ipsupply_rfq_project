@@ -51,7 +51,8 @@ class ModelDetailController extends Controller
             {
                 //push all model found to an object
                 $arrayObject->append($model);
-
+//                $model->created_at = $model->created_at->modify('+1 day');
+//                Log::info($model->created_at);
             }
 
         }
@@ -60,9 +61,11 @@ class ModelDetailController extends Controller
         //else return all because user is admin
         if($user->is_admin === 0)
         {
+            Log::info('user');
             return array_unique((array)$arrayObject);
 
         }else{
+            Log::info('admin');
             return ModelDetail::all();
         }
 

@@ -15,6 +15,7 @@
                                         <td>Model</td>
                                         <td>Condition</td>
                                         <td>Unit Price</td>
+                                        <td>Serial</td>
                                         <td>Notes</td>
                                     </tr>
                                 </thead>
@@ -25,6 +26,7 @@
                                             <td>{{detail.modelName}}</td>
                                             <td>{{detail.condition}}</td>
                                             <td>{{detail.unitPrice}}</td>
+                                            <td>{{detail.serialNumber}}</td>
                                             <td>{{detail.note}}</td>
                                         </tr>
                                     </template>
@@ -32,7 +34,7 @@
                                 <tfoot>
                                     <tr>
                                         <td colspan="5">
-                                            <span style="font-weight: bold; color: red" v-if="freeShipping === '0'">DOES NOT include free ground shipping</span>
+                                            <span style="font-weight: bold; color: #ff0000" v-if="freeShipping === '0'">DOES NOT include free ground shipping</span>
                                             <span style="font-weight: bold; color: red" v-if="freeShipping === '1'">Free ground shipping included</span>
                                         </td>
                                     </tr>
@@ -69,7 +71,7 @@
 
                 axios.get('/api/ipsupply/addQuotationToDb/' + JSON.stringify(this.listQuotation) + '/' + JSON.stringify(this.userId) + '/' +this.freeShipping)
                 .then((res) => {
-                    window.location.href = 'https://rfq.ipsupply.net/Vender'
+                    window.location.href = 'http://quote.ipsupply.net/Vender'
                     alert('Thanks for your responses. Our team will contact you ASAP.')
                 })
                 .catch((err) => {

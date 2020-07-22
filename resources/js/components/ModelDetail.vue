@@ -115,7 +115,7 @@
 
                 axios.get('/api/ipsupply/addModelDetail/'+ JSON.stringify(this.arrayModel)+'/'+JSON.stringify(this.group))
                     .then((res) => {
-                        window.location.href = 'https://rfq.ipsupply.net/Vender';
+                        window.location.href = 'http://quote.ipsupply.net/Vender';
                     })
                     .catch((err) => {
                         console.log(err)

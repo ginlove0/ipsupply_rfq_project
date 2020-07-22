@@ -2082,7 +2082,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
-//
 
 
 
@@ -2112,10 +2111,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       var _this = this;
 
       axios.get('/api/ipsupply/getModelDetail/' + this.userId.id).then(function (res) {
-        for (var i = 0; i < res.data.length; i++) {
-          res.data[i].created_at = res.data[i].created_at.split(' ')[0];
-        }
-
         _this.displayList = res.data;
       })["catch"](function (err) {
         console.log(err);
@@ -2175,9 +2170,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     },
     getNow: function getNow() {
       var today = Date();
-      console.log('today', today);
       this.timestamp = moment__WEBPACK_IMPORTED_MODULE_3___default()(today).format('YYYY-MM-DD');
-      console.log('today', this.timestamp);
     }
   },
   computed: {
@@ -2259,6 +2252,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ModalConfirm",
   props: ['listQuotation', 'userId', 'freeShipping'],
@@ -2268,7 +2263,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     onSubmit: function onSubmit() {
       axios.get('/api/ipsupply/addQuotationToDb/' + JSON.stringify(this.listQuotation) + '/' + JSON.stringify(this.userId) + '/' + this.freeShipping).then(function (res) {
-        window.location.href = 'https://rfq.ipsupply.net/Vender';
+        window.location.href = 'http://quote.ipsupply.net/Vender';
         alert('Thanks for your responses. Our team will contact you ASAP.');
       })["catch"](function (err) {
         console.log(err);
@@ -2403,7 +2398,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.arrayModel.push(item);
       });
       axios.get('/api/ipsupply/addModelDetail/' + JSON.stringify(this.arrayModel) + '/' + JSON.stringify(this.group)).then(function (res) {
-        window.location.href = 'https://rfq.ipsupply.net/Vender';
+        window.location.href = 'http://quote.ipsupply.net/Vender';
       })["catch"](function (err) {
         console.log(err);
       });
@@ -2606,6 +2601,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "QuotationDetail",
@@ -2621,6 +2622,7 @@ __webpack_require__.r(__webpack_exports__);
         qty: '',
         condition: '',
         unitPrice: '',
+        serialNumber: '',
         note: ''
       }],
       passDataToDisplayModelList: []
@@ -2634,6 +2636,7 @@ __webpack_require__.r(__webpack_exports__);
         qty: '',
         condition: '',
         unitPrice: '',
+        serialNumber: '',
         note: ''
       });
     },
@@ -2648,6 +2651,7 @@ __webpack_require__.r(__webpack_exports__);
           qty: '',
           condition: '',
           unitPrice: '',
+          serialNumber: '',
           note: ''
         });
       }
@@ -56693,27 +56697,7 @@ var render = function() {
       "table",
       { staticClass: "table", staticStyle: { "text-align": "center" } },
       [
-        _c("thead", [
-          _c("tr", [
-            _c("td"),
-            _vm._v(" "),
-            _c("td", { staticClass: "header-table" }, [_vm._v("Model")]),
-            _vm._v(" "),
-            _c("td", { staticClass: "header-table" }, [_vm._v("Qty")]),
-            _vm._v(" "),
-            _c("td", { staticClass: "header-table" }, [_vm._v("Condition")]),
-            _vm._v(" "),
-            _c("td", { staticClass: "header-table" }, [
-              _vm._v("Serial Number")
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "header-table" }, [_vm._v("Note")]),
-            _vm._v(" "),
-            _c("td", { staticClass: "header-table" }, [_vm._v("Age")]),
-            _vm._v(" "),
-            _vm.is_admin ? _c("td") : _vm._e()
-          ])
-        ]),
+        _vm._m(0),
         _vm._v(" "),
         _c(
           "tbody",
@@ -56756,7 +56740,7 @@ var render = function() {
                     _vm._v(_vm._s(detail.note))
                   ]),
                   _vm._v(" "),
-                  _vm.timestamp === detail.created_at
+                  _vm.timestamp === detail.created_at.split(" ")[0]
                     ? _c("td", { staticClass: "rainbow-text" }, [
                         _vm._v("New!")
                       ])
@@ -56808,7 +56792,7 @@ var render = function() {
                   ? _c("tr", { attrs: { id: "hello" } }, [
                       _c(
                         "td",
-                        { attrs: { colspan: "7" } },
+                        { attrs: { colspan: "8" } },
                         [
                           _c("QuotationDetail", {
                             attrs: {
@@ -56931,7 +56915,32 @@ var render = function() {
       : _vm._e()
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("td"),
+        _vm._v(" "),
+        _c("td", { staticClass: "header-table" }, [_vm._v("Model")]),
+        _vm._v(" "),
+        _c("td", { staticClass: "header-table" }, [_vm._v("Qty")]),
+        _vm._v(" "),
+        _c("td", { staticClass: "header-table" }, [_vm._v("Condition")]),
+        _vm._v(" "),
+        _c("td", { staticClass: "header-table" }, [_vm._v("Serial Number")]),
+        _vm._v(" "),
+        _c("td", { staticClass: "header-table" }, [_vm._v("Note")]),
+        _vm._v(" "),
+        _c("td", { staticClass: "header-table" }, [_vm._v("Age")]),
+        _vm._v(" "),
+        _c("td")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -56976,6 +56985,8 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", [_vm._v("Unit Price")]),
                     _vm._v(" "),
+                    _c("td", [_vm._v("Serial")]),
+                    _vm._v(" "),
                     _c("td", [_vm._v("Notes")])
                   ])
                 ]),
@@ -56994,6 +57005,8 @@ var render = function() {
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(detail.unitPrice))]),
                           _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(detail.serialNumber))]),
+                          _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(detail.note))])
                         ])
                       })
@@ -57011,7 +57024,7 @@ var render = function() {
                             {
                               staticStyle: {
                                 "font-weight": "bold",
-                                color: "red"
+                                color: "#ff0000"
                               }
                             },
                             [_vm._v("DOES NOT include free ground shipping")]
@@ -57787,6 +57800,33 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
+                      value: quoDetail.serialNumber,
+                      expression: "quoDetail.serialNumber"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  staticStyle: { width: "initial" },
+                  attrs: { rows: "2", cols: "30", maxlength: "255" },
+                  domProps: { value: quoDetail.serialNumber },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(quoDetail, "serialNumber", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("td", [
+              _c("label", [
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
                       value: quoDetail.note,
                       expression: "quoDetail.note"
                     }
@@ -57882,6 +57922,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("Condition")]),
         _vm._v(" "),
         _c("th", [_vm._v("Unit Price")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Serial Number")]),
         _vm._v(" "),
         _c("th", [_vm._v("Notes")]),
         _vm._v(" "),

@@ -7,6 +7,7 @@
                 <th>Qty</th>
                 <th>Condition</th>
                 <th>Unit Price</th>
+                <th>Serial Number</th>
                 <th>Notes</th>
                 <th>Action</th>
             </tr>
@@ -32,6 +33,11 @@
                 <td>
                     <label>
                         <input type="text" maxlength="10" v-model="quoDetail.unitPrice" style="width:70px;" placeholder="$" class="form-control" required>
+                    </label>
+                </td>
+                <td>
+                    <label>
+                        <textarea rows="2" cols="30" v-model="quoDetail.serialNumber" maxlength="255" style="width:initial;" class="form-control"></textarea>
                     </label>
                 </td>
                 <td>
@@ -74,6 +80,7 @@
                     qty: '',
                     condition: '',
                     unitPrice: '',
+                    serialNumber: '',
                     note: ''
                 }],
                 passDataToDisplayModelList: []
@@ -88,6 +95,7 @@
                     qty: '',
                     condition: '',
                     unitPrice: '',
+                    serialNumber: '',
                     note: ''
                 })
             },
@@ -105,6 +113,7 @@
                         qty: '',
                         condition: '',
                         unitPrice: '',
+                        serialNumber: '',
                         note: ''
                     })
 
